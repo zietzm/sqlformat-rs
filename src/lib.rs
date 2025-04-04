@@ -1992,12 +1992,15 @@ mod tests {
                 sometable
             WHERE
                 -- comment test here
+                -- fmt: off
                 first_key.second_key = 1
                                 -- json:first_key.second_key = 1
+                -- fmt: on
                 AND
                 -- fm1t: off
                 first_key.second_key = 1
-                --  json:first_key.second_key = 1"
+                --  json:first_key.second_key = 1
+                -- fmt:on"
         );
 
         assert_eq!(format(input, &QueryParams::None, &options), expected);

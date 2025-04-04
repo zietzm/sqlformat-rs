@@ -57,17 +57,10 @@ pub(crate) fn format(
     let mut formatter = Formatter::new(tokens, params, options);
     let mut formatted_query = String::new();
     let mut is_fmt_enabled = true;
-    let mut is_prev_token_fmt_switch = false;
     for (index, token) in tokens.iter().enumerate() {
-        if is_prev_token_fmt_switch {
-            is_prev_token_fmt_switch = false;
-            continue;
-        }
         if matches!(token.kind, TokenKind::LineComment | TokenKind::BlockComment) {
             if let Some(is_fmt_off) = check_fmt_off(token.value) {
                 is_fmt_enabled = !is_fmt_off;
-                is_prev_token_fmt_switch = true;
-                continue;
             }
         }
         formatter.index = index;
